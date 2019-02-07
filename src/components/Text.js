@@ -1,14 +1,23 @@
 import styled from "styled-components";
 
-const Text = styled.p`
-  color: ${({ color }) => color};
+export const Text = styled.p`
+  color: ${({ color, theme }) => (color ? color : theme.color.dark)};
   font-size: ${({ fontSize }) => fontSize};
+  margin: 0.3em 0;
 `;
 
 export const H1 = styled.h1`
-  font-size: 3em;
-  color: ${({ theme }) => theme.color.dark};
+  font-size: 3.5em;
+  margin: 0.3em 0;
+  color: ${({ color, theme }) => (color ? color : theme.color.dark)};
+`;
+export const H2 = styled.h1`
+  font-size: 2em;
+  margin: 0.3em 0;
+  color: ${({ color, theme }) => (color ? color : theme.color.dark)};
 `;
 
-
-export default Text;
+export const H3 = styled.h1`
+  font-size: 1.5em;
+  color: ${({ color, theme }) => (color ? color : theme.color.dark)};
+`;
