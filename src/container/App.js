@@ -20,7 +20,8 @@ export default class App extends Component {
       product_price: "",
       ingredients: [],
       harmful_ingredients: [],
-      image_preview: ""
+      image_preview: "",
+      error_message: ""
     };
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.resetState = this.resetState.bind(this);
@@ -32,7 +33,8 @@ export default class App extends Component {
       product_price: "",
       ingredients: [],
       harmful_ingredients: [],
-      image_preview: ""
+      image_preview: "",
+      error_message: []
     });
   }
 
@@ -72,6 +74,12 @@ export default class App extends Component {
     })
       .then(response => {
         let parse_response = JSON.parse(response.request.responseText);
+        let error_message_array = parse_response.ErrorMessage
+          ? parse_response.ErrorMessage
+          : null;
+        this.setState({
+          error_message: error_message_array
+        });
         let ingredients_array = ocr_response_format(
           parse_response.ParsedResults[0].ParsedText
         );
@@ -80,11 +88,12 @@ export default class App extends Component {
         );
         this.setState({
           ingredients: ingredients_array,
-          harmful_ingredients: harmful_ingredients_array
+          harmful_ingredients: harmful_ingredients_array,
+          error_message: error_message_array
         });
       })
       .catch(error => {
-        console.log("error", error);
+        console.log(error);
       });
   }
 
@@ -122,6 +131,14 @@ export default class App extends Component {
                 ) : (
                   <Text>Product has not scanned yet</Text>
                 )}
+
+                {this.state.error_message
+                  ? this.state.error_message.map(item => (
+                      <Text key={item} color="red">
+                        {item}
+                      </Text>
+                    ))
+                  : null}
                 <H2>Scan product label</H2>
                 <ImagePreview src={this.state.image_preview} />
                 <InputFile
