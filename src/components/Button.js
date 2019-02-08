@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = styled.button`
+const ButtonStyle = styled.button`
   background: ${props => props.theme.color[props.nature]};
   color: ${({ theme }) => theme.color.dark};
   padding: 0.75em 2em;
@@ -32,6 +32,17 @@ const Button = styled.button`
     width: 100%;
   }
 `;
+
+const Button = ({ type, onClick, disabled, label, nature }) => (
+  <ButtonStyle
+    type={type}
+    onClick={onClick}
+    disabled={disabled}
+    nature={nature}
+  >
+    {label}
+  </ButtonStyle>
+);
 
 Button.defaultProps = {
   nature: "default"
