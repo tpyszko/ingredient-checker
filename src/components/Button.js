@@ -33,12 +33,13 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const Button = ({ type, onClick, disabled, label, nature }) => (
+const Button = ({ type, onClick, disabled, label, nature, fluid }) => (
   <ButtonStyle
     type={type}
     onClick={onClick}
     disabled={disabled}
     nature={nature}
+    fluid={fluid}
   >
     {label}
   </ButtonStyle>
