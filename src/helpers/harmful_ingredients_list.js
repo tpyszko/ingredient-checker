@@ -20,5 +20,8 @@ export const find_harmful_ingredients = list => {
   let find_intersection = list.filter(item =>
     harmful_ingredients_list.includes(item)
   );
-  return find_intersection;
+  if (find_intersection.length > 0) {
+    return find_intersection;
+  }
+  return ["We could not find any harmful ingredients"];
 };
