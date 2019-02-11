@@ -11,6 +11,8 @@ import ImagePreview from "../components/ImagePreview";
 import { image_example } from "../helpers/mockdata";
 import { ocr_response_format } from "../helpers/helpers";
 import { find_harmful_ingredients } from "../helpers/harmful_ingredients_list";
+import ErrorMessage from "../components/ErrorMessage";
+import Loader from "../components/Loader";
 
 export default class App extends Component {
   constructor(props) {
@@ -21,10 +23,18 @@ export default class App extends Component {
       ingredients: [],
       harmful_ingredients: [],
       image_preview: "",
-      error_message: ""
+      error_message: "",
+      loading: false
     };
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.resetState = this.resetState.bind(this);
+    this.setLoading = this.setLoading.bind(this);
+  }
+
+  setLoading() {
+    this.setState({
+      loading: this.state.loading ? false : true
+    });
   }
 
   resetState() {
@@ -39,7 +49,6 @@ export default class App extends Component {
   }
 
   handleOnLoadImage(e) {
-    this.resetState();
     e.preventDefault();
 
     let reader = new FileReader();
@@ -56,6 +65,8 @@ export default class App extends Component {
 
   handleOnSubmit(e) {
     e.preventDefault();
+    this.setLoading();
+    this.resetState();
     const { image_preview } = this.state;
     const img = image_preview;
 
@@ -77,29 +88,37 @@ export default class App extends Component {
         let error_message_array = parse_response.ErrorMessage
           ? parse_response.ErrorMessage
           : null;
-        this.setState({
-          error_message: error_message_array
-        });
-        let ingredients_array = ocr_response_format(
-          parse_response.ParsedResults[0].ParsedText
-        );
-        let harmful_ingredients_array = find_harmful_ingredients(
-          ingredients_array
-        );
-        this.setState({
-          ingredients: ingredients_array,
-          harmful_ingredients: harmful_ingredients_array,
-          error_message: error_message_array
-        });
+
+        if (error_message_array) {
+          this.setState({
+            error_message: error_message_array
+          });
+          this.setLoading();
+        } else {
+          let ingredients_array = ocr_response_format(
+            parse_response.ParsedResults[0].ParsedText
+          );
+          let harmful_ingredients_array = find_harmful_ingredients(
+            ingredients_array
+          );
+          this.setState({
+            ingredients: ingredients_array,
+            harmful_ingredients: harmful_ingredients_array,
+            error_message: error_message_array
+          });
+          this.setLoading();
+        }
       })
       .catch(error => {
-        console.log(error);
+        console.log("error", error);
+        this.setLoading();
       });
   }
 
   render() {
     return (
       <Fragment>
+        {this.state.loading && <Loader />}
         <Hero>
           <Flex flexDirection="column">
             <H1 color="white">Ingredient Checker</H1>
@@ -131,14 +150,7 @@ export default class App extends Component {
                 ) : (
                   <Text>Product has not scanned yet</Text>
                 )}
-
-                {this.state.error_message
-                  ? this.state.error_message.map(item => (
-                      <Text key={item} color="red">
-                        {item}
-                      </Text>
-                    ))
-                  : null}
+                <ErrorMessage error={this.state.error_message} />
                 <H2>Scan product label</H2>
                 <ImagePreview src={this.state.image_preview} />
                 <InputFile
@@ -148,6 +160,9 @@ export default class App extends Component {
                   id="file_upload"
                   onChange={e => this.handleOnLoadImage(e)}
                 />
+                <button onClick={() => console.log(this.state)}>
+                  show stata
+                </button>
               </Container>
             </Flex>
           </Container>
