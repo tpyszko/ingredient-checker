@@ -1,5 +1,5 @@
 {
-  "name": "react-boilerplate",
+  "name": "ingredient-checker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "keywords": [
     "react",
-    "boilerplate"
+    "free-ocr-space-api"
   ],
   "author": "tpyszko",
   "license": "ISC",

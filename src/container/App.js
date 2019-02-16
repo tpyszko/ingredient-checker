@@ -160,9 +160,6 @@ export default class App extends Component {
                   id="file_upload"
                   onChange={e => this.handleOnLoadImage(e)}
                 />
-                <button onClick={() => console.log(this.state)}>
-                  show stata
-                </button>
               </Container>
             </Flex>
           </Container>
