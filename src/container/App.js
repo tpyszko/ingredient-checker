@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { H1, H2, Text } from "../components/Text";
+import uuid from "uuid";
+import { H1, H2, H3, Text } from "../components/Text";
 import Flex from "../components/Flex";
 import Container from "../components/Container";
 import Hero from "../components/Hero";
@@ -31,7 +32,6 @@ class App extends Component {
             <Flex alignItems="flex-start">
               <Container>
                 <H2>Scan product label</H2>
-
                 <InputFile
                   fluid
                   type="file"
@@ -52,17 +52,15 @@ class App extends Component {
                 />
               </Container>
               <Container>
-                {this.props.harmful_ingredients ? (
+                <H3>Harmfull ingredients: </H3>
+                {this.props.harmful_ingredients.length > 0 ? (
                   this.props.harmful_ingredients.map(item => (
-                    <div>
-                      <H2>Harmfull ingredients: </H2>
-                      <Text key={item} color="red">
-                        {item}
-                      </Text>
-                    </div>
+                    <Text color="red" key={uuid()}>
+                      {item}
+                    </Text>
                   ))
                 ) : (
-                  <Text>Product has not scanned yet</Text>
+                  <Text>Upload file and click "Check ingredients"</Text>
                 )}
                 <ImagePreview src={this.props.image_preview} />
                 <ErrorMessage error={this.props.error_message} />
