@@ -34,7 +34,7 @@ export const handleUploadImageFailure = error => {
 };
 
 export const handleUploadImage = event => {
-  return async dispatch => {
+  return dispatch => {
     dispatch(handleUploadImageBegin());
     dispatch(handleClearState());
     try {
@@ -73,9 +73,8 @@ export const handleSubmitImageFailure = error => {
 export const handleOnSubmitAction = image => {
   return dispatch => {
     dispatch(handleUploadImageBegin());
-    const img = image;
-    let formData = new FormData();
-    formData.append("base64image", img);
+    const formData = new FormData();
+    formData.append("base64image", image);
     formData.append("language", "eng");
     formData.append("apikey", "cd7318c36b88957");
 
@@ -88,18 +87,18 @@ export const handleOnSubmitAction = image => {
       data: formData
     })
       .then(response => {
-        let parse_response = JSON.parse(response.request.responseText);
-        let error_message_array = parse_response.ErrorMessage
+        const parse_response = JSON.parse(response.request.responseText);
+        const error_message_array = parse_response.ErrorMessage
           ? parse_response.ErrorMessage
           : null;
 
         if (error_message_array) {
           dispatch(handleSubmitImageFailure(error_message_array));
         } else {
-          let ingredients_array = ocr_response_format(
+          const ingredients_array = ocr_response_format(
             parse_response.ParsedResults[0].ParsedText
           );
-          let harmful_ingredients_array = find_harmful_ingredients(
+          const harmful_ingredients_array = find_harmful_ingredients(
             ingredients_array
           );
           dispatch(handleSubmitImageSuccess(harmful_ingredients_array));
