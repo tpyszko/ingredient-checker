@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Label = styled.label`
   overflow: hidden;
@@ -71,4 +72,13 @@ const InputFile = ({
   </Label>
 );
 
+InputFile.propTypes = {
+  name: PropTypes.string,
+  value: PropTypes.string,
+  type: PropTypes.string,
+  id: PropTypes.string,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  onChange: PropTypes.func
+};
 export default InputFile;

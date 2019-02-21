@@ -5,6 +5,13 @@ import { ThemeProvider } from "styled-components";
 import theme from "./theme/standard-theme";
 import GlobalStyle from "./theme/global-style";
 
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reducers from "./reducers";
+import thunk from "redux-thunk";
+
+const store = createStore(reducers, applyMiddleware(thunk));
+
 const AppProvider = () => (
   <ThemeProvider theme={theme}>
     <Fragment>
@@ -15,4 +22,11 @@ const AppProvider = () => (
 );
 
 const wrapper = document.getElementById("root");
-wrapper ? ReactDOM.render(<AppProvider />, wrapper) : false;
+wrapper
+  ? ReactDOM.render(
+      <Provider store={store}>
+        <AppProvider />
+      </Provider>,
+      wrapper
+    )
+  : false;

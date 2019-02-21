@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const ButtonStyle = styled.button`
   background: ${props => props.theme.color[props.nature]};
@@ -47,6 +48,14 @@ const Button = ({ type, onClick, disabled, label, nature, fluid }) => (
 
 Button.defaultProps = {
   nature: "default"
+};
+
+Button.propTypes = {
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  nature: PropTypes.string,
+  fluid: PropTypes.bool
 };
 
 export default Button;

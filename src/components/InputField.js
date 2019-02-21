@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { Text } from "./Text";
 
 const Input = styled.input`
@@ -46,5 +47,15 @@ const InputField = ({
     />
   </InputWrapper>
 );
+
+InputField.propTypes = {
+  name: PropTypes.string,
+  value: PropTypes.string,
+  type: PropTypes.string,
+  id: PropTypes.string,
+  placeholder: PropTypes.string,
+  required: PropTypes.string,
+  onChange: PropTypes.func
+};
 
 export default InputField;
