@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Text } from "../components/Text";
 
 const ErrorMessage = ({ error }) =>
@@ -8,5 +9,9 @@ const ErrorMessage = ({ error }) =>
       {item}
     </Text>
   ));
+
+ErrorMessage.propTYpes = {
+  error: PropTypes.array
+};
 
 export default ErrorMessage;
