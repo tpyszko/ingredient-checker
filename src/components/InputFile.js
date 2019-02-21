@@ -9,7 +9,6 @@ const Label = styled.label`
   border-radius: 0.5em;
   float: left;
   padding: 0.5em;
-
   background: ${props => props.theme.color.default};
   color: ${({ theme }) => theme.color.dark};
   padding: 0.75em 2em;
@@ -22,6 +21,8 @@ const Label = styled.label`
   cursor: pointer;
   text-align: center;
   box-sizing: border-box;
+  transition: 0.3s;
+
   :hover {
     cursor: pointer;
     opacity: 0.6;

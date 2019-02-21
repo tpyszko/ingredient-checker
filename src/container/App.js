@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import uuid from "uuid";
+import styled from "styled-components";
 import { H1, H2, H3, Text } from "../components/Text";
+import Sidebar from "../components/Sidebar";
 import Flex from "../components/Flex";
 import Container from "../components/Container";
 import Hero from "../components/Hero";
@@ -9,6 +11,7 @@ import InputFile from "../components/InputFile";
 import ImagePreview from "../components/ImagePreview";
 import ErrorMessage from "../components/ErrorMessage";
 import Loader from "../components/Loader";
+import { harmful_ingredients_list_inline } from "../helpers/harmful_ingredients_list";
 
 import { connect } from "react-redux";
 import {
@@ -16,21 +19,38 @@ import {
   handleOnSubmitAction
 } from "../actions/ingredients";
 
+const AppWrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
 class App extends Component {
   render() {
     return (
-      <Fragment>
+      <AppWrapper>
         {this.props.loading && <Loader />}
-        <Hero>
-          <Flex flexDirection="column">
-            <H1 color="white">Ingredient Checker</H1>
-            <H2 color="white">Your health matter</H2>
-          </Flex>
-        </Hero>
-        <Flex>
+        <Sidebar />
+        <Flex display="-webkit-box">
           <Container maxWidth="1024px">
-            <Flex alignItems="flex-start">
-              <Container>
+            <Container>
+              <Hero>
+                <H1>Ingredient Checker</H1>
+                <Text>
+                  I have created application to help you find cosmetics without
+                  harmful ingredients. Now you can scan label of your shampoo,
+                  body lation or shower gel and find out if it contains any
+                  unhealthy products. Application is looking for following words
+                  from your product: <b>{harmful_ingredients_list_inline}</b> As
+                  this application is a prototape, pleas take care when you
+                  check the label.
+                </Text>
+              </Hero>
+            </Container>
+            <Container>
+              <Flex alignItems="flex-start" flexDirection="column">
                 <H2>Scan product label</H2>
                 <InputFile
                   fluid
@@ -50,25 +70,32 @@ class App extends Component {
                     )
                   }
                 />
-              </Container>
-              <Container>
-                <H3>Harmfull ingredients: </H3>
-                {this.props.harmful_ingredients.length > 0 ? (
-                  this.props.harmful_ingredients.map(item => (
-                    <Text color="red" key={uuid()}>
-                      {item}
-                    </Text>
-                  ))
-                ) : (
-                  <Text>Upload file and click "Check ingredients"</Text>
-                )}
+
+                <div>
+                  <Text style={{ display: "inline" }}>
+                    Harmfull ingredients:{" "}
+                    {this.props.harmful_ingredients.length > 0 ? (
+                      this.props.harmful_ingredients.map(item => (
+                        <span
+                          style={{ display: "inline", color: "red" }}
+                          key={uuid()}
+                        >
+                          {item}
+                        </span>
+                      ))
+                    ) : (
+                      <span>No label has sent</span>
+                    )}
+                  </Text>
+                </div>
+
                 <ImagePreview src={this.props.image_preview} />
                 <ErrorMessage error={this.props.error_message} />
-              </Container>
-            </Flex>
+              </Flex>
+            </Container>
           </Container>
         </Flex>
-      </Fragment>
+      </AppWrapper>
     );
   }
 }

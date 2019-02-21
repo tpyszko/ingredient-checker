@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const ButtonStyle = styled.button`
+  font-family: "KarlaRegular";
   background: ${props => props.theme.color[props.nature]};
   color: ${({ theme }) => theme.color.dark};
   padding: 0.75em 2em;
@@ -13,6 +14,7 @@ const ButtonStyle = styled.button`
   border-radius: 0.25em;
   border: none;
   width: ${props => (props.fluid ? "100%" : "auto")};
+  transition: 0.3s;
 
   :hover {
     cursor: pointer;
@@ -25,7 +27,7 @@ const ButtonStyle = styled.button`
   &:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    background: inherit;
+    background: ${({ theme }) => theme.color.default};
     color: ${({ theme }) => theme.color.dark};
   }
 

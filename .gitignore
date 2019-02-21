@@ -18,3 +18,9 @@ dist
 # Env variables #
 ######################
 .env
+
+
+# Now configuration#
+######################
+now.json
+

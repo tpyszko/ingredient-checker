@@ -8,16 +8,13 @@ const Hero = styled.div`
   min-width: ${({ minWidth }) => minWidth};
   max-height: ${({ maxHeight }) => maxHeight};
   min-height: ${({ minHeight }) => minHeight};
-  background: ${({ theme }) => theme.color.dark};
-  text-align: center;
 `;
 
 Hero.defaultProps = {
   padding: "0",
   margin: "0",
   border: "none",
-  minWidth: "100%",
-  minHeight: "300px"
+  minWidth: "100%"
 };
 
 export default Hero;

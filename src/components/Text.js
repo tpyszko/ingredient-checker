@@ -4,6 +4,7 @@ export const Text = styled.p`
   color: ${({ color, theme }) => (color ? color : theme.color.dark)};
   font-size: ${({ fontSize }) => fontSize};
   margin: 0.3em 0;
+  line-height: 21px;
 `;
 
 export const H1 = styled.h1`

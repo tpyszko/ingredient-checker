@@ -30,7 +30,6 @@ module.exports = {
     new Dotenv()
   ],
   devServer: {
-    inline: true,
     port: 3000
   }
 };

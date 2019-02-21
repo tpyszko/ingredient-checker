@@ -6,6 +6,7 @@ const Container = styled.div`
   border: ${({ border }) => border};
   max-width: ${({ maxWidth }) => maxWidth};
   min-width: ${({ minWidth }) => minWidth};
+  height: ${({ height }) => height};
   width: 100%;
   box-sizing: border-box;
 `;

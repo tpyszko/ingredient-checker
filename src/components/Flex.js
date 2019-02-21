@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const Flex = styled.div`
-  display: flex;
-  flex: ${({ flex }) => flex};
+  display: ${props => (props.display ? props.display : "flex")};
+  width: 100%;
   align-items: ${({ alignItems }) => alignItems};
   justify-content: ${({ justifyContent }) => justifyContent};
   flex-direction: ${({ flexDirection }) => flexDirection};
@@ -10,8 +10,10 @@ const Flex = styled.div`
   min-height: ${({ minHeight }) => minHeight};
   max-width: ${({ maxWidth }) => maxWidth};
   box-sizing: border-box;
+  overflow-y: auto;
   @media (max-width: 768px) {
-    flex-direction: column;
+    display: block;
+    overflow-y: none;
   }
 `;
 
