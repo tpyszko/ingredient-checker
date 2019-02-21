@@ -11,6 +11,7 @@ export const H1 = styled.h1`
   margin: 0.3em 0;
   color: ${({ color, theme }) => (color ? color : theme.color.dark)};
 `;
+
 export const H2 = styled.h1`
   font-size: 2em;
   margin: 0.3em 0;
