@@ -14,3 +14,7 @@ node_modules
 # Build folders #
 ######################
 dist
+
+# Env variables #
+######################
+.env

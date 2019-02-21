@@ -76,7 +76,7 @@ export const handleOnSubmitAction = image => {
     const formData = new FormData();
     formData.append("base64image", image);
     formData.append("language", "eng");
-    formData.append("apikey", "cd7318c36b88957");
+    formData.append("apikey", process.env.API_KEY);
 
     axios({
       method: "post",
