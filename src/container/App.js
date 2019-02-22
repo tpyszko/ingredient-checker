@@ -11,6 +11,7 @@ import InputFile from "../components/InputFile";
 import ImagePreview from "../components/ImagePreview";
 import ErrorMessage from "../components/ErrorMessage";
 import Loader from "../components/Loader";
+import IngredientList from "../components/IngredientList";
 import { harmful_ingredients_list_inline } from "../helpers/harmful_ingredients_list";
 
 import { connect } from "react-redux";
@@ -43,9 +44,12 @@ class App extends Component {
                   harmful ingredients. Now you can scan label of your shampoo,
                   body lation or shower gel and find out if it contains any
                   unhealthy products. Application is looking for following words
-                  from your product: <b>{harmful_ingredients_list_inline}</b> As
-                  this application is a prototape, pleas take care when you
-                  check the label.
+                  from your product: <b>{harmful_ingredients_list_inline}</b>
+                </Text>
+                <Text>
+                  As this application is a prototype, pleas double check if your
+                  product does not contain any item from the list. Pleas be
+                  aware that maximum image size limit is 1024 KB.
                 </Text>
               </Hero>
             </Container>
@@ -70,25 +74,10 @@ class App extends Component {
                     )
                   }
                 />
-
-                <div>
-                  <Text style={{ display: "inline" }}>
-                    Harmfull ingredients:{" "}
-                    {this.props.harmful_ingredients.length > 0 ? (
-                      this.props.harmful_ingredients.map(item => (
-                        <span
-                          style={{ display: "inline", color: "red" }}
-                          key={uuid()}
-                        >
-                          {item}
-                        </span>
-                      ))
-                    ) : (
-                      <span>No label has sent</span>
-                    )}
-                  </Text>
-                </div>
-
+                <IngredientList
+                  harmful_ingredients={this.props.harmful_ingredients}
+                  label={"Harmfull ingredients:"}
+                />
                 <ImagePreview src={this.props.image_preview} />
                 <ErrorMessage error={this.props.error_message} />
               </Flex>

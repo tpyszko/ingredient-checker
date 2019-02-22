@@ -5,6 +5,7 @@ export const Text = styled.p`
   font-size: ${({ fontSize }) => fontSize};
   margin: 0.3em 0;
   line-height: 21px;
+  display: ${({ display }) => display};
 `;
 
 export const H1 = styled.h1`
