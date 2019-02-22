@@ -30,10 +30,9 @@ const Label = styled.label`
   :active {
     opacity: 0.8;
   }
-  :[type=file] {
+  [type="file"] {
     cursor: inherit;
     display: block;
-    font-size: 999px;
     filter: alpha(opacity=0);
     min-height: 100%;
     min-width: 100%;
