@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Image = styled.img`
@@ -7,5 +8,9 @@ const Image = styled.img`
 `;
 
 const ImagePreview = ({ src }) => (src ? <Image src={src} /> : null);
+
+ImagePreview.propTypes = {
+  src: PropTypes.string
+};
 
 export default ImagePreview;
