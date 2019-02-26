@@ -49,7 +49,12 @@ const Button = ({ type, onClick, disabled, label, nature, fluid }) => (
 );
 
 Button.defaultProps = {
-  nature: "default"
+  type: "submit",
+  onClick: () => {},
+  disabled: false,
+  nature: "default",
+  fluid: false,
+  label: "button text"
 };
 
 Button.propTypes = {
