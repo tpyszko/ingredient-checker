@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from "react";
-import uuid from "uuid";
 import styled from "styled-components";
-import { H1, H2, H3, Text } from "../components/Text";
+import { H1, H2, Text } from "../components/Text";
 import Sidebar from "../components/Sidebar";
 import Flex from "../components/Flex";
 import Container from "../components/Container";
 import Hero from "../components/Hero";
-import Button from "../components/Button";
+import Button from "../components/Button/Button";
 import InputFile from "../components/InputFile";
 import ImagePreview from "../components/ImagePreview";
 import ErrorMessage from "../components/ErrorMessage";
