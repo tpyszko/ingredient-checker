@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid";
-import { Text } from "../components/Text";
+import { Text } from "../Text/";
 
 const ErrorMessage = ({ error }) =>
   error &&
