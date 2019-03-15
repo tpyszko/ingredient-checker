@@ -6,7 +6,7 @@ import { Text } from "../Text/";
 const IngredientList = props => {
   return (
     <div>
-      <Text display="inline">{props.label}&nbsp;</Text>
+      <Text display="inline">{props.label} </Text>
       {props.harmful_ingredients.length > 0 ? (
         props.harmful_ingredients.map(item => (
           <Text color="red" display="inline" key={uuid()}>

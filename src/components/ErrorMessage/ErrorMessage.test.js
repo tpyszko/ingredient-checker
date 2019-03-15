@@ -5,7 +5,7 @@ import "jest-enzyme";
 import "jest-styled-components";
 
 describe("ErrorMessage tests", () => {
-  it("check default props", () => {
+  it("do not render when there is no message", () => {
     const wrapper = shallow(<ErrorMessage />);
     // console.log("ErrorMessage props test", wrapper.debug());
     expect(wrapper.find("p")).toHaveLength(0);
