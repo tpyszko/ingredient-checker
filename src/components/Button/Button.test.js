@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import Button from "./Button";
+import Button from "./";
 
 describe("Button default.props tests", () => {
   it("check default props", () => {

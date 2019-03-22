@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import { H1, H2, Text } from "../components/Text";
-import Sidebar from "../components/Sidebar";
-import Flex from "../components/Flex";
-import Container from "../components/Container";
-import Hero from "../components/Hero";
-import Button from "../components/Button/Button";
-import InputFile from "../components/InputFile";
-import ImagePreview from "../components/ImagePreview";
-import ErrorMessage from "../components/ErrorMessage";
-import Loader from "../components/Loader";
-import IngredientList from "../components/IngredientList";
+import { H1, H2, Text } from "../components/Text/";
+import Sidebar from "../components/Sidebar/";
+import Flex from "../components/Flex/";
+import Container from "../components/Container/";
+import Hero from "../components/Hero/";
+import Button from "../components/Button/";
+import InputFile from "../components/InputFile/";
+import ImagePreview from "../components/ImagePreview/";
+import ErrorMessage from "../components/ErrorMessage/";
+import Loader from "../components/Loader/";
+import IngredientList from "../components/IngredientList/";
 import { harmful_ingredients_list_inline } from "../helpers/harmful_ingredients_list";
 
 import { connect } from "react-redux";

@@ -18,7 +18,7 @@ const Flex = styled.div`
 `;
 
 Flex.defaultProps = {
-  flex: "flex",
+  display: "flex",
   alignItems: "center",
   justifyContent: "center",
   flexDirection: "row",
